@@ -32,7 +32,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to tasks_path(@task)
     else
-      redner 'new.html.erb'
+      redner 'edit.html.erb'
     end
   end
 # As a user, I can view the details of a task
@@ -40,9 +40,15 @@ class TasksController < ApplicationController
 # As a user, I can edit a task (mark as completed / update title & details)
 # As a user, I can remove a task
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to tasks_path
+  end
+
   private
 
   def task_params
-    params.require(:task).permit(:title, :deails, :completed)
+    params.require(:task).permit(:title, :details, :completed)
   end
 end
