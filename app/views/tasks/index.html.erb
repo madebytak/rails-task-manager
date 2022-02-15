@@ -1,7 +1,9 @@
 <div class="container">
 <h1>My Tasks</h1>
 <% @tasks.each do |task| %>
-<%= task.title.capitalize%>
+<%= task.title%>
+<%= link_to 'view details', task_path(task) %>
+
 <% end %>
-<%= link_to "Add a new task", new_task_path %>
+<%= link_to "Add a new task", new_task_path, class: "btn btn-primary" %>
 </div>
