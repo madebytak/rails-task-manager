@@ -5,7 +5,9 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def show; end
+  def show
+    @task = Task.find(params[:id])
+  end
 
   def new
     @task = Task.new
@@ -17,6 +19,20 @@ class TasksController < ApplicationController
       redirect_to tasks_path(@task)
     else
       render 'new.html.erb'
+    end
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+
+  end
+
+  def update
+    @task.update = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to tasks_path(@task)
+    else
+      redner 'new.html.erb'
     end
   end
 # As a user, I can view the details of a task
